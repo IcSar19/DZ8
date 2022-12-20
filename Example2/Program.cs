@@ -1,2 +1,59 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿using System;
+using static System.Console;
+
+Clear();
+int[,] array = new int[6, 4];
+FillArrayRandomNumbers(array);
+PrintArray(array);
+StringMinSum(array);
+WriteLine();
+
+void FillArrayRandomNumbers(int[,] array)
+{
+    for (int i = 0; i < array.GetLength(0); i++)
+    {
+        for (int j = 0; j < array.GetLength(1); j++)
+        {
+            array[i, j] = new Random().Next(0, 10);
+        }
+    }
+
+}
+
+void StringMinSum(int[,] array)
+{
+    int min = 0;
+    int minSum = 0;
+    int sum = 0;
+    for (int i = 0; i < array.GetLength(1); i++)
+    {
+        min += array[0, 1];
+    }
+    for (int i = 0; i < array.GetLength(0); i++)
+    {
+        for (int j = 0; j < array.GetLength(1); j++)
+        {
+            if (sum < min)
+            {
+                min = sum;
+                minSum = i;
+            }
+            sum = 0;
+        }
+    }
+    Write($"{minSum + 1} строка");
+}
+
+void PrintArray(int[,] array)
+{
+    for (int i = 0; i < array.GetLength(0); i++)
+    {
+        Write("[ ");
+        for (int j = 0; j < array.GetLength(1); j++)
+        {
+            Write(array[i, j] + " ");
+        }
+        Write("]");
+        WriteLine("");
+    }
+}
